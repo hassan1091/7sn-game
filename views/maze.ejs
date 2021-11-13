@@ -1,0 +1,148 @@
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <head>
+<title>7sn Al-Saleh Game</title>
+<link rel="stylesheet" href="public/css/maze.css">
+<link rel="stylesheet" href="public/css/cake.css">
+
+</head>
+  <body>
+    <iframe src="public/audio/silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
+
+    <audio id="player" loop><source src="public/audio/hbd.mp3" type="audio/mp3"></audio>
+
+
+    <div id="gradient"></div>
+    <div id="page">
+
+      <div id="Message-Container">
+
+        <div id="message" style="top: 50%;">
+
+        <div class="container">
+
+        <div class="text" data-splitting="">Happy Birthday, 7sn Al-Saleh!</div>
+        <div class="presents">
+          <div class="present orange">
+            <div class="lid"></div>
+            <div class="box"></div>
+            <div class="bow"></div>
+            <div class="ribbon"></div>
+          </div>
+          <div class="present blue">
+            <div class="lid"></div>
+            <div class="box"></div>
+            <div class="bow"></div>
+            <div class="ribbon"></div>
+          </div>
+          <div class="present green">
+            <div class="lid"></div>
+            <div class="box"></div>
+            <div class="bow"></div>
+            <div class="ribbon"></div>
+          </div>
+        </div>
+        <p id="moves"></p>
+        <p>✨✨🎉🥳🥳🎉✨✨</p>
+        <audio id="basil" controls><source src="public/audio/basill.mp3" type="audio/mp3"></audio>
+        <input id="okBtn" type="button" onclick="toggleVisablity('Message-Container')" value="Cool!" />
+
+      </div>
+        </div>
+
+      </div>
+      <div id="menu">
+        <div class="custom-select">
+          <select id="diffSelect">
+                    <option value="10">Easy</option>
+                    <option value="15">Medium</option>
+                    <option value="25">Hard</option>
+                    <option value="38">Extreme</option>
+                </select>
+        </div>
+        <input id="startMazeBtn" type="button" onclick="makeMaze()" value="Start" />
+      </div>
+      <div id="view">
+        <div id="mazeContainer">
+          <canvas id="mazeCanvas" class="border" height="1100" width="1100"></canvas>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/mojs/0.288.1/mo.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/mojs-player/0.43.15/mojs-player.min.js"></script>
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+
+
+<script src="public/js/maze.js"></script>
+
+<script type="text/javascript">
+  var bkAud = document.getElementById("player");
+  document.addEventListener('click', musicPlay);
+  function musicPlay() {
+      bkAud.play();
+      bkAud.volume = 0.5;
+      document.removeEventListener('click', musicPlay);
+  }
+  var basilAud = document.getElementById("basil");
+  basilAud.onplay = function() {
+    bkAud.volume= 0.1;
+};
+basilAud.onended = function() {
+  bkAud.volume= 0.5;
+};
+
+  document.addEventListener("click", event => {
+  bursty(event.pageX, event.pageY);
+});
+
+setInterval(() => randomizedConfetti(), 500);
+
+function bursty(x, y) {
+  const burst = new mojs.Burst({
+    left: 0,
+    top: 0,
+    radius: { 0: 200 },
+    count: 20,
+    degree: 360,
+    children: {
+      fill: { white: "#34E1FF" },
+      duration: 2000 } }).
+
+  tune({
+    x: x,
+    y: y });
+
+
+  burst.replay();
+}
+
+function randomizedConfetti() {
+  let randomX = Math.floor(Math.random() * (document.body.clientWidth - 100) + 0);
+  let randomY = Math.floor(Math.random() * (window.innerHeight - 200) + 0);
+  const burst = new mojs.Burst({
+    left: 0,
+    top: 0,
+    radius: { 0: 200 },
+    count: 20,
+    degree: 360,
+    children: {
+      fill: { white: "#34E1FF" },
+      duration: 2000 } }).
+
+  tune({
+    x: randomX,
+    y: randomY });
+
+
+  burst.replay();
+}
+
+Splitting();
+</script>
+
+  </body>
+
+</html>
